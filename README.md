@@ -1,0 +1,2 @@
+# javaJdbcDemo
+Practicing with JDBC
