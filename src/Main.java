@@ -10,8 +10,12 @@ public class Main {
         PreparedStatement statement = null;
         try{
             connection = helper.getConnection();
-            statement =  connection.prepareStatement
-                    ("INSERT INTO world.city (Name,CountryCode,District,Population) VALUES ('Bursa','TUR','Bursa',3000000)"); //statement for inserting values to database
+            String sql= "insert into city (Name,CountryCode,District,Population) values(?,?,?,?)";
+            statement =  connection.prepareStatement(sql);
+            statement.setString(1,"Bursa2");
+            statement.setString(2,"TUR");
+            statement.setString(3,"Bursa");
+            statement.setInt(4, 160000); //statements for inserting values to database
             int result = statement.executeUpdate(); //result shows how many columns are affected
             System.out.println("Kayıt Eklendi!");
         }catch (SQLException exception) {
