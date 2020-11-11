@@ -1,4 +1,4 @@
-public class Country {
+public class Country { //
     private String code;
     private String name;
     private String continent;
