@@ -10,14 +10,10 @@ public class Main {
         PreparedStatement statement = null;
         try{
             connection = helper.getConnection();
-            String sql= "insert into city (Name,CountryCode,District,Population) values(?,?,?,?)";
-            statement =  connection.prepareStatement(sql);
-            statement.setString(1,"Bursa2");
-            statement.setString(2,"TUR");
-            statement.setString(3,"Bursa");
-            statement.setInt(4, 160000); //statements for inserting values to database
+            String sql= "update city set Population=162000, District='Bursayeni' where Id=4083";//statement for updating value of row in database
+            statement = connection.prepareStatement(sql);
             int result = statement.executeUpdate(); //result shows how many columns are affected
-            System.out.println("Kayıt Eklendi!");
+            System.out.println("Kayıt Güncellendi!");
         }catch (SQLException exception) {
             helper.showErrorMessage(exception);
         }
@@ -26,7 +22,7 @@ public class Main {
             connection.close();
         }
     }
-    public static void selectDemo()throws SQLException{ //function for select operations
+    public static void selectData()throws SQLException{ //function for select operations
             Connection connection = null;
             DbHelper helper = new DbHelper();
             Statement statement = null;
@@ -50,5 +46,27 @@ public class Main {
             finally{
                 connection.close();
             }
+    }
+    public static void insertData()throws SQLException{
+        Connection connection = null;
+        DbHelper helper = new DbHelper();
+        PreparedStatement statement = null;
+        try{
+            connection = helper.getConnection();
+            String sql= "insert into city (Name,CountryCode,District,Population) values(?,?,?,?)";
+            statement =  connection.prepareStatement(sql);
+            statement.setString(1,"Bursa2");
+            statement.setString(2,"TUR");
+            statement.setString(3,"Bursa");
+            statement.setInt(4, 160000); //statements for inserting values to database
+            int result = statement.executeUpdate(); //result shows how many columns are affected
+            System.out.println("Kayıt Eklendi!");
+        }catch (SQLException exception) {
+            helper.showErrorMessage(exception);
+        }
+        finally{
+            statement.close();
+            connection.close();
+        }
     }
 }
